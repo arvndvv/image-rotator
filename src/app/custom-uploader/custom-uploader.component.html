@@ -1,0 +1,41 @@
+<input type="file" name="" id="" (change)="handleFileSelect($event)" [hidden]="hideDefaultInput" #uploader />
+<span (click)="uploader.click()" class="ghost_layer">
+  <ng-content select="[inputButton]"></ng-content>
+</span>
+<div class="uploader-container">
+  <div class="image_container">
+    <!-- <canvas id="c"></canvas> -->
+    <img src="{{ imgSrc }}" alt="{{ f.name }}" class="thumbnail" [ngClass]="{'object-contain':!imageFitCover}" #thumbnail
+      [ngStyle]="{ transform: 'rotate(' + angle + 'deg)' }" *ngIf="f" />
+
+    <div class="no-image" (click)="uploader.click()" *ngIf="!f">
+      <span class="material-symbols-outlined add-photos">
+        add_photo_alternate
+      </span>
+      <p>Add a picture!</p>
+    </div>
+    <div class="header-tab" *ngIf="f">
+      <span class="material-symbols-outlined image-fit" data-label="Contain" *ngIf="imageFitCover" (click)="imageFitCover=!imageFitCover"> unfold_less </span>
+      <span class="material-symbols-outlined image-fit" data-label="Cover" *ngIf="!imageFitCover" (click)="imageFitCover=!imageFitCover"> expand_content </span>
+    </div>
+    <div class="customise-tab" [ngClass]="{ justify_center: isEditing }">
+      <a href="#" download id="download" class="download">
+      <span class="material-symbols-outlined" data-label="Download" *ngIf="!isEditing && f"
+      (click)="isEditing = !isEditing">
+      download
+    </span></a>
+      <span class="material-symbols-outlined edit" data-label="Edit" *ngIf="!isEditing && f"
+        (click)="isEditing = !isEditing">
+        edit
+      </span>
+      <!-- <button (click)="rotate()" *ngIf="f">Rotate</button> -->
+      <span class="material-symbols-outlined rotate-button" (click)="rotate()" *ngIf="isEditing" data-label="Rotate">
+        rotate_right
+      </span>
+      <span class="material-symbols-outlined" (click)="confirmRotate()" *ngIf="isEditing" data-label="Confirm">
+        Done
+      </span>
+    </div>
+  </div>
+</div>
+
