@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CustomUploaderModule } from './custom-uploader/custom-uploader.module';
+import { ImageRotatorModule } from './image-rotator';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { CustomUploaderModule } from './custom-uploader/custom-uploader.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CustomUploaderModule
+    ImageRotatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

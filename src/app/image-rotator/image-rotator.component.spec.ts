@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomUploaderComponent } from './custom-uploader.component';
+import { CustomUploaderComponent } from './image-rotator.component';
 
 describe('CustomUploaderComponent', () => {
   let component: CustomUploaderComponent;

@@ -1,11 +1,11 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'custom-uploader',
-  templateUrl: './custom-uploader.component.html',
-  styleUrls: ['./custom-uploader.component.scss']
+  selector: 'image-rotator',
+  templateUrl: './image-rotator.component.html',
+  styleUrls: ['./image-rotator.component.scss']
 })
-export class CustomUploaderComponent implements OnInit {
+export class ImageRotatorComponent implements OnInit {
   @Input() hideDefaultInput = false;
   angle = 0;
   imageFitCover = true;
