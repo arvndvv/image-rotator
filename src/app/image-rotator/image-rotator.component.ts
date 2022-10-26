@@ -28,21 +28,10 @@ export class ImageRotatorComponent implements OnInit {
       reader.readAsDataURL(this.f)
     }
     reader.addEventListener("load",()=>{
-      this.imgSrc = reader.result as string;
+      this.callback(reader.result);
     })
   }
-  drawCanvas(base64data:string){
-    const canvas:any = document.createElement('canvas');
-    const ctx = canvas.getContext("2d");
-    const image = new Image();
-    image.src = base64data;
-    image.onload = function() {
-        canvas.width = image.width;
-        canvas.height = image.height;
-        ctx.translate(0, 0);
-        ctx.drawImage(image, 0, 0);
-    };
-  }
+
 
  rotateBase64Image(base64data:any, degrees=90, callback:any) {
   if(!degrees) return;
@@ -72,7 +61,6 @@ export class ImageRotatorComponent implements OnInit {
 }
   rotate(degree = 90){
     this.angle = (this.angle + degree)%360;
-    console.log(this.angle,'ang');
 }
 confirmRotate(){
     this.isEditing = false;
@@ -81,7 +69,10 @@ confirmRotate(){
  callback=(base64data:any)=> {
   const download:any = document.getElementById('download');
   const time = (new Date()).toISOString();
-  download.download = ((this.f?.name.split('-')[0])?.split('_')[0])?.split('.')+ '-' + time + '.' +this.f?.name.split('.')[1];
+  const splitWithDot = this.f?.name.split('.');
+  const extension = splitWithDot?.[splitWithDot.length-1];
+  const firstName = ((((this.f?.name.split('-')[0])?.split('_')[0])?.split('.')[0])?.split(' ')[0])?.split(',')[0];
+  download.download = firstName+ '-' + time + '.' +extension;
   download.href = base64data;
   this.angle = 0;
   this.imgSrc = base64data;
