@@ -7,6 +7,7 @@ import { Component, OnInit, Output, EventEmitter, Input, ViewChild, AfterViewIni
 })
 export class ImageRotatorComponent implements OnInit {
   @Input() hideDefaultInput = false;
+  @Output() fileName = new EventEmitter<string>();
   angle = 0;
   imageFitCover = true;
   isEditing = false;
@@ -24,6 +25,7 @@ export class ImageRotatorComponent implements OnInit {
   handleFileSelect(event:Event){
     this.f = ((event.target as HTMLInputElement).files as FileList)[0] as File;
     const reader = new FileReader();
+    this.fileName.emit(this.f.name);
     if(this.f){
       reader.readAsDataURL(this.f)
     }

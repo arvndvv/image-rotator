@@ -3,8 +3,9 @@
     rotate_right
   </span>
 </h1>
-<image-rotator [hideDefaultInput]="true">
+<image-rotator [hideDefaultInput]="true" (fileName)="handleFileName($event)">
   <div class="button_container" inputButton>
     <button class="file_upload_button">Add File</button>
+    <p class="file_name">{{fileName}}</p>
   </div>
 </image-rotator>

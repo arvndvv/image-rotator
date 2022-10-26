@@ -1,7 +1,6 @@
 <input type="file" name="" id="" (change)="handleFileSelect($event)" [hidden]="hideDefaultInput" #uploader />
 <span (click)="uploader.click()" class="ghost_layer">
   <ng-content select="[inputButton]"></ng-content>
-  <p *ngIf="f" class="file_name">{{f.name}}</p>
 </span>
 <div class="uploader-container">
   <div class="image_container">

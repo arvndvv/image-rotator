@@ -43,20 +43,7 @@
   align-items: center;
   padding: 10px;
 }
-// .rotate-button{
-//   bottom: 10px;
-//   position: absolute;
-//   font-weight: 900;
-//   background: rgba(255, 255, 255, 0.642);
-//   border-radius: 50%;
-//   padding: 10px;
-//   cursor: pointer;
-//   transition: 0.3s;
-//   &:hover{
-//     transform: rotate(90deg) scale(1.1);
-//     box-shadow: 0 0 5px rgba(51, 51, 51, 0.722);
-//   }
-// }
+
 
 .no-image{
   display: flex;
@@ -147,8 +134,4 @@
   color: #000;
   margin-left: auto;
 }
-.file_name{
-  font-size: 14px;
-  color: #777;
-  margin-top: 5px;
-}
+
