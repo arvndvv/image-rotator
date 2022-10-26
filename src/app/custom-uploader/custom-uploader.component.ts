@@ -5,12 +5,8 @@ import { Component, OnInit, Output, EventEmitter, Input, ViewChild, AfterViewIni
   templateUrl: './custom-uploader.component.html',
   styleUrls: ['./custom-uploader.component.scss']
 })
-export class CustomUploaderComponent implements OnInit, AfterViewInit {
-  @Output() fileChange = new EventEmitter<File>();
-  @Output() thumbnailChange = new EventEmitter<any>();
+export class CustomUploaderComponent implements OnInit {
   @Input() hideDefaultInput = false;
-  @Input() hideDefaultThumbnail = false;
-  @ViewChild('thumbnail') thumbnail!:ElementRef;
   angle = 0;
   imageFitCover = true;
   isEditing = false;
@@ -27,19 +23,12 @@ export class CustomUploaderComponent implements OnInit, AfterViewInit {
 
   handleFileSelect(event:Event){
     this.f = ((event.target as HTMLInputElement).files as FileList)[0] as File;
-    this.fileChange.emit(this.f)
     const reader = new FileReader();
-    console.log(this.fileChange);
-
     if(this.f){
       reader.readAsDataURL(this.f)
     }
     reader.addEventListener("load",()=>{
-      // console.log(reader.result);
       this.imgSrc = reader.result as string;
-      // this.drawCanvas(this.imgSrc)
-      // this.thumbnailChange.emit(this.thumbnail.nativeElement)
-      // navigator.clipboard.writeText(this.imgSrc)
     })
   }
   drawCanvas(base64data:string){
@@ -69,8 +58,6 @@ export class CustomUploaderComponent implements OnInit, AfterViewInit {
           canvas.width = image.height;
           canvas.height = image.width;
       }
-      console.log('cow',degrees);
-
       ctx.rotate(degrees * Math.PI / 180);
       if (degrees === 90) {
           ctx.translate(0, -canvas.width);
@@ -92,23 +79,12 @@ confirmRotate(){
     this.rotateBase64Image(this.imgSrc,this.angle,this.callback)
 }
  callback=(base64data:any)=> {
-  // console.log(base64data);
   const download:any = document.getElementById('download');
   const time = (new Date()).toISOString();
-  download.download = this.f?.name.split('.')[0]+ '-' + time + '.' +this.f?.name.split('.')[1];
+  download.download = ((this.f?.name.split('-')[0])?.split('_')[0])?.split('.')+ '-' + time + '.' +this.f?.name.split('.')[1];
   download.href = base64data;
   this.angle = 0;
   this.imgSrc = base64data;
 }
-download(){
-  const canvas:any = document.getElementById('c');
-  const img = canvas.toDataURL('image/jpeg');
-  console.log(img);
 
-}
-  ngAfterViewInit(): void {
-    if(this.thumbnail){
-      // consol/e.log('test',this.thumbnail)
-    }
-  }
 }

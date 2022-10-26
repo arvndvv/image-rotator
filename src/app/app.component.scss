@@ -5,3 +5,21 @@
   color: aliceblue;
   cursor: pointer;
 }
+h1{
+  text-align: center;
+  color: #673ab7;
+}
+.button_container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.rotate{
+  font-weight: 900;
+  animation: rotate 0.5s linear infinite alternate;
+}
+@keyframes rotate {
+  to{
+    transform: rotate(90deg);
+  }
+}

@@ -1,10 +1,10 @@
 <input type="file" name="" id="" (change)="handleFileSelect($event)" [hidden]="hideDefaultInput" #uploader />
 <span (click)="uploader.click()" class="ghost_layer">
   <ng-content select="[inputButton]"></ng-content>
+  <p *ngIf="f" class="file_name">{{f.name}}</p>
 </span>
 <div class="uploader-container">
   <div class="image_container">
-    <!-- <canvas id="c"></canvas> -->
     <img src="{{ imgSrc }}" alt="{{ f.name }}" class="thumbnail" [ngClass]="{'object-contain':!imageFitCover}" #thumbnail
       [ngStyle]="{ transform: 'rotate(' + angle + 'deg)' }" *ngIf="f" />
 
@@ -20,8 +20,7 @@
     </div>
     <div class="customise-tab" [ngClass]="{ justify_center: isEditing }">
       <a href="#" download id="download" class="download">
-      <span class="material-symbols-outlined" data-label="Download" *ngIf="!isEditing && f"
-      (click)="isEditing = !isEditing">
+      <span class="material-symbols-outlined" data-label="Download" *ngIf="!isEditing && f">
       download
     </span></a>
       <span class="material-symbols-outlined edit" data-label="Edit" *ngIf="!isEditing && f"
